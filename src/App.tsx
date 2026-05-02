@@ -123,23 +123,30 @@ export default function App() {
           animate={{ opacity: 1, x: 0 }}
           className="mb-20"
         >
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
-            <div className="space-y-4">
-              <div className="flex items-center gap-4 text-[11px] uppercase tracking-[4px] font-bold text-blue-500 opacity-80">
-                <span>Gemini / 雙子座</span>
-                <span className="w-1 h-1 rounded-full bg-blue-500" />
-                <span>Type A / 血型 A</span>
+          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8">
+            <div className="flex flex-col md:flex-row items-start md:items-center gap-8">
+              {/* Profile Avatar */}
+              <div className="w-36 h-36 md:w-48 md:h-48 shrink-0 rounded-3xl overflow-hidden border border-white/10 shadow-[0_0_40px_rgba(59,130,246,0.15)] bg-[#161B22]">
+                <img src="/avatar.jpg" alt="Frank 薛富淋" className="w-full h-full object-cover object-[center_10%]" />
               </div>
-              <div className="relative">
-                <h1 className="text-7xl md:text-[120px] font-[900] leading-[0.8] tracking-[-0.05em] text-blue-500 uppercase">
-                  Frank
-                </h1>
-                <h2 className="text-4xl md:text-5xl font-bold tracking-[0.2em] mt-4 text-white uppercase">
-                  薛富淋
-                </h2>
-              </div>
-              <div className="inline-block px-4 py-1.5 border border-blue-500/40 bg-blue-500/10 text-blue-400 text-xs font-black uppercase tracking-widest rounded-full">
-                航海技術專業 / 國立高雄科技大學
+              
+              <div className="space-y-4">
+                <div className="flex items-center gap-4 text-[11px] uppercase tracking-[4px] font-bold text-blue-500 opacity-80">
+                  <span>Gemini / 雙子座</span>
+                  <span className="w-1 h-1 rounded-full bg-blue-500" />
+                  <span>Type A / 血型 A</span>
+                </div>
+                <div className="relative">
+                  <h1 className="text-7xl md:text-[120px] font-[900] leading-[0.8] tracking-[-0.05em] text-blue-500 uppercase">
+                    Frank
+                  </h1>
+                  <h2 className="text-4xl md:text-5xl font-bold tracking-[0.2em] mt-4 text-white uppercase">
+                    薛富淋
+                  </h2>
+                </div>
+                <div className="inline-block px-4 py-1.5 border border-blue-500/40 bg-blue-500/10 text-blue-400 text-xs font-black uppercase tracking-widest rounded-full">
+                  航海技術專業 / 國立高雄科技大學
+                </div>
               </div>
             </div>
 
