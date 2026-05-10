@@ -36,7 +36,8 @@ interface Skill {
 interface Project {
   title: string;
   date: string;
-  url: string;
+  url?: string;
+  videoUrl?: string;
   description: string;
 }
 
@@ -65,13 +66,13 @@ const PROJECTS: Project[] = [
   {
     title: "4月20日作業",
     date: "2026-04-20",
-    url: "https://drive.google.com/file/d/1ZQrbBq1yFFkE4zlxtApSEwAhGgaTyaEt/view",
+    videoUrl: "/4月20日作業.mp4",
     description: "課堂專案作業成果展示"
   },
   {
     title: "4月3日 AI模擬旅遊",
     date: "2026-04-03",
-    url: "https://drive.google.com/file/d/1PjtKajKYx3R4R7xgCM2VBcsJye32FEdN/view",
+    videoUrl: "/video.mp4",
     description: "運用 AI 技術規劃的模擬旅遊企劃"
   },
   {
@@ -254,19 +255,26 @@ export default function App() {
               initial="hidden"
               animate="visible"
               exit={{ opacity: 0 }}
-              className="grid grid-cols-1 md:grid-cols-3 gap-8"
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
             >
               {PROJECTS.map((project, idx) => (
-                <motion.a
+                <motion.div
                   key={project.title}
-                  href={project.url}
-                  target="_blank"
-                  rel="noreferrer"
                   variants={itemVariants}
                   whileHover={{ y: -10 }}
-                  className="group block bg-[#161B22] p-10 rounded-2xl border border-white/5 hover:border-blue-500 transition-all duration-500 relative overflow-hidden"
+                  className="group flex flex-col bg-[#161B22] rounded-2xl border border-white/5 hover:border-blue-500 transition-all duration-500 overflow-hidden"
                 >
-                  <div className="relative z-10">
+                  {project.videoUrl && (
+                    <div className="w-full aspect-video bg-black shrink-0 relative">
+                      <video 
+                        src={project.videoUrl}
+                        controls
+                        playsInline
+                        className="w-full h-full object-cover absolute inset-0"
+                      />
+                    </div>
+                  )}
+                  <div className="p-8 md:p-10 flex-1 flex flex-col relative z-10">
                     <div className="text-[10px] uppercase tracking-[4px] font-black text-blue-500 mb-8 opacity-60">
                       Project 0{idx + 1} / {project.date}
                     </div>
@@ -276,12 +284,20 @@ export default function App() {
                     <p className="text-white/50 text-sm font-medium mb-12 line-clamp-2">
                       {project.description}
                     </p>
-                    <div className="inline-flex items-center justify-between w-full bg-blue-500 text-[#000] px-6 py-4 rounded-xl font-black text-xs uppercase tracking-widest transition-all group-hover:bg-white">
-                      <span>View Assignment</span>
-                      <ChevronRight size={16} />
+                    <div className="mt-auto">
+                      {project.url ? (
+                        <a href={project.url} target="_blank" rel="noreferrer" className="inline-flex items-center justify-between w-full bg-blue-500 text-[#000] px-6 py-4 rounded-xl font-black text-xs uppercase tracking-widest transition-all group-hover:bg-white hover:scale-[1.02]">
+                          <span>View Assignment</span>
+                          <ChevronRight size={16} />
+                        </a>
+                      ) : (
+                        <div className="inline-flex items-center justify-center w-full border border-white/10 text-white/50 px-6 py-4 rounded-xl font-black text-xs uppercase tracking-widest bg-white/[0.02]">
+                          <span>Video Embedded Above</span>
+                        </div>
+                      )}
                     </div>
                   </div>
-                </motion.a>
+                </motion.div>
               ))}
             </motion.div>
           )}
